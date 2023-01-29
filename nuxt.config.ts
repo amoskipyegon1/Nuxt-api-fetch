@@ -5,11 +5,6 @@ export default defineNuxtConfig({
 	app: {
 		pageTransition: { name: "page", mode: "out-in" },
 	},
-	// pwa: {
-	// 	workbox: {
-	// 		enabled: true,
-	// 	},
-	// },
 	pwa: {
 		icon: {
 			fileName: "icon.png",
@@ -19,24 +14,5 @@ export default defineNuxtConfig({
 				devices: [],
 			},
 		},
-		// workbox: {
-		// 	enabled: true,
-		// },
 	},
-	// pwa: {
-	// 	manifest: {
-	// 		name: "Monitor App",
-	// 		short_name: "monitor",
-	// 		lang: "en",
-	// 		theme_color: "#F7F1E9",
-	// 		background_color: "#F7F1E9",
-	// 		start_url: `/`,
-	// 		prefer_related_applications: true,
-	// 	},
-	// 	icon: {
-	// 		fileName: "icon.png",
-	// 	},
-	// },
-	// pwa: {
-	// },
 });
