@@ -10,7 +10,9 @@ useHead({
     link: [
         { href: 'https://fonts.googleapis.com', rel: 'preconnect' },
         { href: 'https://fonts.gstatic.com', rel: 'preconnect' },
-        { href: 'https://fonts.googleapis.com/css2?family=Oxygen&display=swap', rel: 'stylesheet' },
+        {
+            href: 'https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swaphttps://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet',
+        },
     ],
 })
 </script>
@@ -19,17 +21,3 @@ useHead({
         <NuxtPage />
     </main>
 </template>
-
-<style scoped>
-html,
-body {
-    margin: 0%;
-    padding: 0%;
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: 'Oxygen', Euclid Circular A, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Ubuntu, Cantarell,
-        Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    @apply bg-app-bg text-[#01051B] overflow-x-hidden;
-}
-</style>
