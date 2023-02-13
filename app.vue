@@ -11,13 +11,13 @@ useHead({
         { href: 'https://fonts.googleapis.com', rel: 'preconnect' },
         { href: 'https://fonts.gstatic.com', rel: 'preconnect' },
         {
-            href: 'https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swaphttps://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet',
+            href: 'https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Nunito:wght@200;400;500;600;700;800;900&display=swap" rel="stylesheet',
         },
     ],
 })
 </script>
 <template>
-    <main class="flex flex-col py-6 sm:py-8">
+    <main class="flex flex-col w-full">
         <NuxtPage />
     </main>
 </template>

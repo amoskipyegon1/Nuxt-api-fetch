@@ -1,88 +1,147 @@
+<script setup lang="ts">
+const show_disaster = ref<boolean>(false)
+const selectDisaster = (): void => {
+    show_disaster.value = !show_disaster.value
+}
+</script>
 <template>
-    <section class="w-full flex flex-col gap-y-2">
-        <NavBar />
-
-        <div class="px-4 md:px-8 lg:px-20 xl:px-32 flex flex-col gap-y-3 mt-20">
-            <div
-                class="w-full flex flex-col items-center gap-y-14 pt-8 sm:pt-16 bg-custom-color rounded-3xl min-h-[100vh] sm:h-[90vh] bg-[url('~/assets/wave_vector.svg')] bg-no-repeat bg-bottom bg-contain"
-            >
-                <div class="flex flex-col gap-y-1 sm:gap-y-3 items-center justify-center">
-                    <h3 class="text-2xl sm:text-3xl md:text-5xl font-[700]">Find disaster-stricken regions.</h3>
-                    <h3 class="text-lg sm:text-2xl md:text-3xl font-medium">Interpret visually plotted data.</h3>
+    <section class="w-full flex flex-col z-0">
+        <div
+            class="w-full px-2 sm:px-8 z-0 h-screen relative flex flex-col items-center justify-center bg-[url('dal.png')] bg-c backdrop-blur bg-[hsl('250 10 15')]"
+        >
+            <div class="absolute top-0 left-0 right-0 flex flex-row items-center py-2 px-2 lg:px-8">
+                <div
+                    class="flex flex-row items-center gap-x-2 py-2 px-2.5 bg-c opacity-75 rounded shadow ring-1 ring-zinc-600"
+                >
+                    <NuxtImg src="/icons/monitoring2.png" class="w-8 sm:w-11 h-8 sm:h-11" />
                 </div>
-                <div class="flex flex-col gap-y-4 items-center justify-center w-full">
-                    <div class="flex flex-col md:flex-row gap-3 items-center justify-center w-full">
-                        <div
-                            class="flex flex-col gap-y-1.5 w-[86%] sm:w-[80%] md:w-[40%] xl:w-[30%] bg-app-bg rounded-l-md px-3 py-2 transition-length duration-200"
-                        >
-                            <span class="text-neutral-500 text-sm md:text-base lg:text-lg font-light">Location</span>
-                            <div class="relative">
-                                <input
-                                    id="location"
-                                    type="text"
-                                    class="block w-full py-2.5 sm:py-3 pl-4 tracking-wide text-sm md:text-base lg:text-lg text-gray-900 border border-gray-200 rounded-sm bg-gray-50 focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:outline-none transition duration-200"
-                                    placeholder="Enter location"
-                                />
+            </div>
+            <div class="w-full h-full z-10 flex flex-col items-center justify-center gap-y-10">
+                <div class="max-w-3xl flex flex-col -mt-28 sm:-mt-24 mb-16 sm:mb-20 md:px-8">
+                    <h3
+                        class="text-4xl sm:text-7xl tracking-tight font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#ffb86b]/80 to-[#db95f9] text-center"
+                    >
+                        Visualizing Disasters
+                    </h3>
+                    <p class="text-zinc-300 text-base sm:text-lg font-medium text-center">
+                        Welcome to our platform that provides a comprehensive view of natural disasters and their impact
+                        on the world. Explore the past, present, and future of natural disasters.
+                    </p>
+                </div>
+                <div class="w-full max-w-2xl px-1 sm:px-4 flex flex-col items-center justify-center">
+                    <div class="flex w-full flex-row items-center justify-center gap-x-4">
+                        <div class="relative w-full">
+                            <div class="absolute -top-14 left-2 sm:-left-3.5 -rotate-6 -translate-x-1/2">
+                                <span class="text-base text-zinc-300/75">Visualize data</span>
                             </div>
-                        </div>
-                        <div
-                            class="flex flex-col gap-y-1.5 w-[86%] sm:w-[80%] md:w-[40%] xl:w-[30%] bg-app-bg rounded-l-md px-3 py-2 transition-length duration-200"
-                        >
-                            <span class="text-neutral-500 text-sm md:text-base lg:text-lg font-light">Disaster</span>
-                            <div class="relative flex items-center">
-                                <input
-                                    id="disaster"
-                                    type="text"
-                                    class="block w-full py-2.5 sm:py-3 pl-4 tracking-wide text-sm md:text-base lg:text-lg text-gray-900 border border-gray-200 rounded-sm bg-gray-50 focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:outline-none transition duration-200"
-                                    placeholder="Select disaster"
-                                />
-                                <button
-                                    type="submit"
-                                    class="text-gray-400 hover:text-gray-500 absolute right-1.5 sm:right-2.5 bg-custom-color focus:outline-none font-medium rounded-lg text-sm md:text-base lg:text-lg px-3 py-1.5 sm:py-2 focus:ring-2 ring-neutral-200 transition duration-200"
-                                >
-                                    <div class="w-6 h-6">
-                                        <IconsChevronY />
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-row gap-x-3 items-center justify-center w-full">
-                        <div
-                            class="flex flex-col gap-y-1.5 w-[86%] sm:w-[80%] md:w-[60%] bg-app-bg rounded-l-md px-3 py-2 transition-length duration-200"
-                        >
-                            <span class="text-neutral-500 text-sm md:text-base lg:text-lg font-light"
-                                >Month of the Year</span
+                            <svg
+                                viewBox="0 0 415.262 415.261"
+                                class="absolute -top-6 -left-2 w-7 h-7 fill-base-content rotate-[20deg]"
                             >
-                            <div class="relative flex items-center">
-                                <input
-                                    id="dates"
-                                    type="text"
-                                    class="block w-full py-2.5 sm:py-3 pl-4 tracking-wide text-sm md:text-base lg:text-lg text-gray-900 border border-gray-200 rounded-sm bg-gray-50 focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:outline-none transition duration-200"
-                                    placeholder="Select date"
-                                />
-                                <button
-                                    type="submit"
-                                    class="text-gray-400 hover:text-gray-500 absolute right-1.5 sm:right-2.5 bg-custom-color focus:outline-none font-medium rounded-lg text-sm md:text-base lg:text-lg px-3 py-1.5 sm:py-2 focus:ring-2 ring-neutral-200 transition duration-200"
-                                >
-                                    <div class="w-6 h-6">
-                                        <IconsChevronY />
-                                    </div>
-                                </button>
+                                <g>
+                                    <path
+                                        d="M414.937,374.984c-7.956-24.479-20.196-47.736-30.601-70.992c-1.224-3.06-6.12-3.06-7.956-1.224 c-10.403,11.016-22.031,22.032-28.764,35.496h-0.612c-74.664,5.508-146.88-58.141-198.288-104.652 c-59.364-53.244-113.22-118.116-134.64-195.84c-1.224-9.792-2.448-20.196-2.448-30.6c0-4.896-6.732-4.896-7.344,0 c0,1.836,0,3.672,0,5.508C1.836,12.68,0,14.516,0,17.576c0.612,6.732,2.448,13.464,3.672,20.196 C8.568,203.624,173.808,363.356,335.376,373.76c-5.508,9.792-10.403,20.195-16.523,29.988c-3.061,4.283,1.836,8.567,6.12,7.955 c30.6-4.283,58.14-18.972,86.292-29.987C413.712,381.104,416.16,378.656,414.937,374.984z M332.928,399.464 c3.673-7.956,6.12-15.912,10.404-23.868c1.225-3.061-0.612-5.508-2.448-6.12c0-1.836-1.224-3.061-3.06-3.672 c-146.268-24.48-264.996-124.236-309.06-259.489c28.764,53.244,72.828,99.756,116.28,138.924 c31.824,28.765,65.484,54.468,102.204,75.888c28.764,16.524,64.872,31.824,97.92,21.421l0,0c-1.836,4.896,5.508,7.344,7.956,3.672 c7.956-10.404,15.912-20.196,24.48-29.376c8.567,18.972,17.748,37.943,24.479,57.527 C379.44,382.94,356.796,393.956,332.928,399.464z"
+                                    ></path>
+                                </g>
+                            </svg>
+                            <button
+                                @click="() => (show_disaster = !show_disaster)"
+                                class="bg-c w-full flex flex-row items-center justify-between text-start text-base sm:text-lg text-zinc-300 border border-zinc-500 rounded py-2.5 sm:py-3.5 px-4 focus:outline-none focus:ring-[#db95f9] focus:ring-2 transition duration-200"
+                            >
+                                Select item to Monitor
+                                <div class="w-5 h-5">
+                                    <IconsChevronDown />
+                                </div>
+                            </button>
+                            <div
+                                v-if="show_disaster"
+                                class="absolute top-[120%] left-0 right-0 bg-c ring-1 ring-zinc-500 rounded-sm"
+                            >
+                                <ul class="w-full flex flex-col gap-y-2 px-2 py-2">
+                                    <li
+                                        @click="selectDisaster"
+                                        class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
+                                    >
+                                        Covid-19
+                                    </li>
+                                    <li
+                                        @click="selectDisaster"
+                                        class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
+                                    >
+                                        drought & Famine
+                                    </li>
+                                    <li
+                                        @click="selectDisaster"
+                                        class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
+                                    >
+                                        Forest Fires
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="w-[86%] sm:w-[80%] md:w-[60%] lg:w-[30%] transition-length duration-200">
                         <button
-                            @click="() => useRouter().push('/home')"
-                            type="button"
-                            class="w-full text-white bg-green-500 hover:bg-green-600 focus:bg-green-600 ring-2 ring-green-300 focus:ring-green-400 font-medium rounded-sm text-xl font-serif px-5 py-3 focus:outline-none transition duration-200"
+                            class="py-2.5 sm:py-3.5 px-6 text-base sm:text-lg bg-[#db95f9] hover:bg-violet-600 rounded uppercase font-medium tracking-wide text-[#220052] transition-colors duration-200"
                         >
-                            Find Monitored Data
+                            Search
                         </button>
                     </div>
+                    <div class="w-full flex flex-row items-center justify-start gap-x-2 py-3.5 sm:pr-32">
+                        <p class="text-base sm:text-xl font-medium text-zinc-200">Or explore a deeper understanding</p>
+                        <div
+                            class="w-5 h-5 text-zinc-50 cursor-pointer hover:translate-x-1 origin-left hover:text-[#db95f9] transition duration-200"
+                        >
+                            <IconsArrowRight />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute top-0 bottom-0 left-0 right-0 z-0 bg-c opacity-25"></div>
+        </div>
+        <div
+            class="absolute px-4 py-2 left-0 sm:left-1/2 sm:-translate-x-1/2 bottom-2 flex flex-row items-center gap-x-12 z-0"
+        >
+            <div class="flex flex-col gap-y-2 opacity-80">
+                <div class="flex flex-row items-center gap-x-2">
+                    <NuxtImg src="/icons/bacteria.png" class="w-7 sm:w-10 h-7 sm:h-10" />
+                    <span
+                        class="text-sm sm:text-xl font-mono text-zinc-400 font-semibold truncate tracking-wide uppercase"
+                        >Covid-19</span
+                    >
+                </div>
+                <div class="flex flex-row items-center">
+                    <NuxtImg src="3.png" class="w-28 sm:w-56 scale-110 opacity-50" />
+                </div>
+            </div>
+            <div class="flex flex-col gap-y-2 opacity-80">
+                <div class="flex flex-row items-center gap-x-2">
+                    <NuxtImg src="/icons/drought.png" class="w-7 sm:w-10 h-7 sm:h-10" />
+                    <span
+                        class="text-sm sm:text-xl font-mono text-zinc-400 font-semibold truncate tracking-wide uppercase"
+                        >Drought</span
+                    >
+                </div>
+                <div class="flex flex-row items-center">
+                    <NuxtImg src="2.png" class="w-28 sm:w-56 scale-110 opacity-50" />
+                </div>
+            </div>
+            <div class="flex flex-col gap-y-2 opacity-80">
+                <div class="flex flex-row items-center gap-x-2">
+                    <NuxtImg src="/icons/burning-tree.png" class="w-7 sm:w-10 h-7 sm:h-10" />
+                    <span
+                        class="text-sm sm:text-xl font-mono text-zinc-400 font-semibold truncate tracking-wide uppercase"
+                        >Forest Fires</span
+                    >
+                </div>
+                <div class="flex flex-row items-center">
+                    <NuxtImg src="1.png" class="w-28 sm:w-56 scale-110 opacity-50" />
                 </div>
             </div>
         </div>
     </section>
 </template>
+
+<style scoped>
+.bg-c {
+    background-color: hsl(230, 15%, 30%);
+}
+</style>
