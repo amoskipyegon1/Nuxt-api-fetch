@@ -1,5 +1,5 @@
 html {
-    font-family: Inter, Monospaced, sans-serif;
+    font-family: Nunito, Inter, sans-serif;
     font-size: 15px;
 }
 body {
@@ -13,7 +13,7 @@ body {
     padding: 0%;
     box-sizing: border-box;
     touch-action: pan-x pan-y;
-    @apply bg-app-bg text-[#01051B] overflow-x-hidden;
+    @apply bg-app-bg text-[#f8f8f2] overflow-x-hidden;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
