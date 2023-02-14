@@ -1,17 +1,20 @@
 <script setup lang="ts">
+const toggle_options = ref<boolean>(true)
 const show_disaster = ref<boolean>(false)
 const selectDisaster = (): void => {
     show_disaster.value = !show_disaster.value
+    setTimeout(() => (toggle_options.value = !toggle_options.value), 200)
 }
 </script>
 <template>
     <section class="w-full flex flex-col z-0">
         <div
-            class="w-full px-2 sm:px-8 z-0 h-screen relative flex flex-col items-center justify-center bg-[url('dal.png')] bg-c backdrop-blur bg-[hsl('250 10 15')]"
+            id="hero"
+            class="w-full px-2 sm:px-8 z-0 h-screen relative flex flex-col items-center justify-center bg-[#414558] backdrop-blur bg-[hsl('250 10 15')]"
         >
             <div class="absolute top-0 left-0 right-0 flex flex-row items-center py-2 px-2 lg:px-8">
                 <div
-                    class="flex flex-row items-center gap-x-2 py-2 px-2.5 bg-c opacity-75 rounded shadow ring-1 ring-zinc-600"
+                    class="flex flex-row items-center gap-x-2 py-2 px-2.5 bg-[#414558] opacity-75 rounded shadow ring-1 ring-zinc-600"
                 >
                     <NuxtImg src="/icons/monitoring2.png" class="w-8 sm:w-11 h-8 sm:h-11" />
                 </div>
@@ -44,42 +47,87 @@ const selectDisaster = (): void => {
                                     ></path>
                                 </g>
                             </svg>
-                            <button
-                                @click="() => (show_disaster = !show_disaster)"
-                                class="bg-c w-full flex flex-row items-center justify-between text-start text-base sm:text-lg text-zinc-300 border border-zinc-500 rounded py-2.5 sm:py-3.5 px-4 focus:outline-none focus:ring-[#db95f9] focus:ring-2 transition duration-200"
-                            >
-                                Select item to Monitor
-                                <div class="w-5 h-5">
-                                    <IconsChevronDown />
+                            <Transition name="slide-down" mode="out-in">
+                                <div v-if="toggle_options" class="w-full relative">
+                                    <button
+                                        @click="() => (show_disaster = !show_disaster)"
+                                        class="bg-[#414558] w-full flex flex-row items-center justify-between text-start text-base sm:text-lg text-zinc-300 border border-zinc-500 rounded py-2.5 sm:py-3.5 px-4 focus:outline-none focus:ring-[#db95f9] focus:ring-2 transition duration-200"
+                                    >
+                                        Select Disasters to Monitor
+                                        <div class="w-5 h-5">
+                                            <IconsChevronDown />
+                                        </div>
+                                    </button>
+                                    <Transition name="drop-down">
+                                        <div
+                                            v-if="show_disaster"
+                                            class="absolute top-[120%] left-0 right-0 bg-[#414558] ring-1 ring-zinc-500 rounded-sm"
+                                        >
+                                            <ul class="w-full flex flex-col gap-y-2 px-2 py-2">
+                                                <li
+                                                    @click="selectDisaster"
+                                                    class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
+                                                >
+                                                    Covid-19
+                                                </li>
+                                                <li
+                                                    @click="selectDisaster"
+                                                    class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
+                                                >
+                                                    drought & Famine
+                                                </li>
+                                                <li
+                                                    @click="selectDisaster"
+                                                    class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
+                                                >
+                                                    Forest Fires
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </Transition>
                                 </div>
-                            </button>
-                            <div
-                                v-if="show_disaster"
-                                class="absolute top-[120%] left-0 right-0 bg-c ring-1 ring-zinc-500 rounded-sm"
-                            >
-                                <ul class="w-full flex flex-col gap-y-2 px-2 py-2">
-                                    <li
-                                        @click="selectDisaster"
-                                        class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
+                                <div v-else class="w-full relative">
+                                    <button
+                                        @click="() => (show_disaster = !show_disaster)"
+                                        class="bg-[#414558] w-full flex flex-row items-center justify-between text-start text-base sm:text-lg text-zinc-300 border border-zinc-500 rounded py-2.5 sm:py-3.5 px-4 focus:outline-none focus:ring-[#db95f9] focus:ring-2 transition duration-200"
                                     >
-                                        Covid-19
-                                    </li>
-                                    <li
-                                        @click="selectDisaster"
-                                        class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
-                                    >
-                                        drought & Famine
-                                    </li>
-                                    <li
-                                        @click="selectDisaster"
-                                        class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
-                                    >
-                                        Forest Fires
-                                    </li>
-                                </ul>
-                            </div>
+                                        Select Period to Monitor
+                                        <div class="w-5 h-5">
+                                            <IconsChevronDown />
+                                        </div>
+                                    </button>
+                                    <Transition name="drop-down">
+                                        <div
+                                            v-if="show_disaster"
+                                            class="absolute top-[120%] left-0 right-0 bg-[#414558] ring-1 ring-zinc-500 rounded-sm"
+                                        >
+                                            <ul class="w-full flex flex-col gap-y-2 px-2 py-2">
+                                                <li
+                                                    @click="selectDisaster"
+                                                    class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
+                                                >
+                                                    Covid-19
+                                                </li>
+                                                <li
+                                                    @click="selectDisaster"
+                                                    class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
+                                                >
+                                                    drought & Famine
+                                                </li>
+                                                <li
+                                                    @click="selectDisaster"
+                                                    class="w-full py-2.5 px-2 text-base text-zinc-200 tracking-wide capitalize cursor-pointer hover:bg-[#db95f9] hover:text-[#220052] rounded-md transition duration-200"
+                                                >
+                                                    Forest Fires
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </Transition>
+                                </div>
+                            </Transition>
                         </div>
                         <button
+                            @click="() => useRouter().push('/plots')"
                             class="py-2.5 sm:py-3.5 px-6 text-base sm:text-lg bg-[#db95f9] hover:bg-violet-600 rounded uppercase font-medium tracking-wide text-[#220052] transition-colors duration-200"
                         >
                             Search
@@ -95,7 +143,7 @@ const selectDisaster = (): void => {
                     </div>
                 </div>
             </div>
-            <div class="absolute top-0 bottom-0 left-0 right-0 z-0 bg-c opacity-25"></div>
+            <div class="absolute top-0 bottom-0 left-0 right-0 z-0 bg-[#414558] opacity-25"></div>
         </div>
         <div
             class="absolute px-4 py-2 left-0 sm:left-1/2 sm:-translate-x-1/2 bottom-2 flex flex-row items-center gap-x-12 z-0"
@@ -141,7 +189,32 @@ const selectDisaster = (): void => {
 </template>
 
 <style scoped>
-.bg-c {
-    background-color: hsl(230, 15%, 30%);
+#hero {
+    background-image: url('/dal.png');
+}
+.drop-down-enter-from {
+    @apply -translate-y-2 opacity-0;
+}
+.drop-down-enter-active,
+.drop-down-leave-active {
+    @apply transition duration-200;
+}
+.drop-down-leave-to {
+    @apply opacity-0;
+}
+
+.slide-down-enter-active,
+.slide-down-leave-active {
+    transition: all 0.25s ease-out;
+}
+
+.slide-down-enter-from {
+    opacity: 0;
+    transform: translateY(-12px);
+}
+
+.slide-down-leave-to {
+    opacity: 0;
+    transform: translateY(12px);
 }
 </style>

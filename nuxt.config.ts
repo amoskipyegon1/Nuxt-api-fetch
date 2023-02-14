@@ -19,10 +19,11 @@ export default defineNuxtConfig({
             short_name: 'Monitor',
             lang: 'en',
             theme_color: '#101010',
-            useWebmanifestExtension: false,
+            // useWebmanifestExtension: false,
         },
     },
     routeRules: {
         '/home': { ssr: false },
+        '/plots': { ssr: false },
     },
 })
