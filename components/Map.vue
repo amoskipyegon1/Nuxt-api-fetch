@@ -1,35 +1,31 @@
 <script setup lang="ts">
 import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
+import { LMap, LTileLayer, LIcon, LMarker } from '@vue-leaflet/vue-leaflet'
 
-const mapelement = ref<HTMLDivElement>()
-
-let mymap: L.Map | L.LayerGroup<any>
 onMounted(() => {
-    console.log('Page launched')
-    launchMap()
     setTimeout(function () {
         window.dispatchEvent(new Event('resize'))
     }, 500)
 })
 
-const launchMap = (): void => {
-    mymap = L.map(mapelement.value as HTMLElement).setView([-0.28572, 36.063389], 15)
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 6,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(mymap)
-}
+const zoom = ref<number>(5)
+const iconWidth = ref<number>(25)
+const iconHeight = ref<number>(40)
+const iconUrl = ref<string>(`https://placekitten.com/${iconWidth.value}/${iconHeight.value}`)
 </script>
 <template>
-    <div
-        id="mapid"
-        ref="mapelement"
-        style="height: 100%; width: 100%"
-        class="z-0 border border-neutral-300 w-full h-full"
-    >
-        <l-map :center="[-0.28572, 36.063389]" :zoom="10">
-            <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
+    <div class="w-full h-full z-0">
+        <l-map ref="map" :zoom="zoom" :center="[-0.289656, 36.067809]" style="z-index: inherit">
+            <l-tile-layer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                layer-type="base"
+                name="OpenStreetMap"
+            ></l-tile-layer>
+            <l-marker :lat-lng="[-0.289656, 36.067809]">
+                <l-icon :icon-anchor="[13, 40]">
+                    <!-- <NuxtImg src="/placeholder.png" class="w-10 h-10" /> -->
+                </l-icon>
+            </l-marker>
         </l-map>
     </div>
 </template>
