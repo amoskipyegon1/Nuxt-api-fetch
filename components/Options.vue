@@ -72,7 +72,7 @@ const year = ref(new Date().getFullYear())
                 </template>
             </VueDatepicker>
         </div>
-        <div class="w-full">
+        <div class="w-full sm:w-auto">
             <button
                 class="w-full py-3.5 px-10 text-base sm:text-lg bg-[#db95f9] hover:bg-violet-600 rounded uppercase font-medium tracking-wider text-[#220052] transition-colors duration-200"
             >
