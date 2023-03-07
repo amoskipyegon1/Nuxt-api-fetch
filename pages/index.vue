@@ -1,15 +1,18 @@
 <script setup lang="ts">
+import VueDatepicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
+
 const toggle_options = ref<boolean>(true)
 const show_disaster = ref<boolean>(false)
 const selectDisaster = (): void => {
     show_disaster.value = !show_disaster.value
     setTimeout(() => (toggle_options.value = !toggle_options.value), 200)
 }
+const year = ref(new Date().getFullYear())
 </script>
 <template>
-    <section class="w-full flex flex-col z-0">
+    <section class="w-full relative flex flex-col z-0">
         <div
-            id="hero"
             class="w-full px-2 sm:px-8 z-0 h-screen relative flex flex-col items-center justify-center bg-[#414558] backdrop-blur bg-[hsl('250 10 15')]"
         >
             <div class="absolute top-0 left-0 right-0 flex flex-row items-center py-2 px-2 lg:px-8">
@@ -18,6 +21,9 @@ const selectDisaster = (): void => {
                 >
                     <NuxtImg src="/icons/monitoring2.png" class="w-8 sm:w-11 h-8 sm:h-11" />
                 </div>
+            </div>
+            <div class="absolute top-0 bottom-0 right-0 left-0 -z-10">
+                <NuxtImg src="/dal.png" class="w-full h-full" />
             </div>
             <div class="w-full h-full z-10 flex flex-col items-center justify-center gap-y-10">
                 <div class="max-w-3xl flex flex-col -mt-28 sm:-mt-24 mb-16 sm:mb-20 md:px-8">
@@ -87,7 +93,19 @@ const selectDisaster = (): void => {
                                     </Transition>
                                 </div>
                                 <div v-else class="w-full relative">
-                                    <button
+                                    <VueDatepicker v-model="year" year-picker :dark="true">
+                                        <template #trigger>
+                                            <button
+                                                class="bg-[#414558] w-full flex flex-row items-center justify-between text-start text-base sm:text-lg text-zinc-300 border border-zinc-500 rounded py-2.5 sm:py-3.5 px-4 focus:outline-none focus:ring-[#db95f9] focus:ring-2 transition duration-200"
+                                            >
+                                                {{ year || 'Select periods to Monitor' }}
+                                                <div class="w-5 h-5">
+                                                    <IconsChevronDown />
+                                                </div>
+                                            </button>
+                                        </template>
+                                    </VueDatepicker>
+                                    <!-- <button
                                         @click="() => (show_disaster = !show_disaster)"
                                         class="bg-[#414558] w-full flex flex-row items-center justify-between text-start text-base sm:text-lg text-zinc-300 border border-zinc-500 rounded py-2.5 sm:py-3.5 px-4 focus:outline-none focus:ring-[#db95f9] focus:ring-2 transition duration-200"
                                     >
@@ -95,7 +113,7 @@ const selectDisaster = (): void => {
                                         <div class="w-5 h-5">
                                             <IconsChevronDown />
                                         </div>
-                                    </button>
+                                    </button> -->
                                     <Transition name="drop-down">
                                         <div
                                             v-if="show_disaster"
@@ -189,9 +207,6 @@ const selectDisaster = (): void => {
 </template>
 
 <style scoped>
-#hero {
-    background-image: url('/dal.png');
-}
 .drop-down-enter-from {
     @apply -translate-y-2 opacity-0;
 }

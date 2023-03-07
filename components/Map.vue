@@ -21,11 +21,28 @@ const iconUrl = ref<string>(`https://placekitten.com/${iconWidth.value}/${iconHe
                 layer-type="base"
                 name="OpenStreetMap"
             ></l-tile-layer>
-            <l-marker :lat-lng="[-0.289656, 36.067809]">
-                <l-icon :icon-anchor="[13, 40]">
-                    <!-- <NuxtImg src="/placeholder.png" class="w-10 h-10" /> -->
+            <l-marker :lat-lng="[-0.289656, 36.067806]">
+                <l-icon class="flex items-center justify-center">
+                    <button class="w-6 h-6 bg-orange-500/90 rounded-full -translate-x-1/4 -translate-y-1/4"></button>
+                </l-icon>
+            </l-marker>
+            <l-marker :lat-lng="[-0.489644, 35.06782]">
+                <l-icon :icon-size="[10, 10]">
+                    <button class="w-6 h-6 bg-blue-500/90 rounded-full -translate-x-1/4 -translate-y-1/4"></button>
+                </l-icon>
+            </l-marker>
+            <l-marker :lat-lng="[-0.289656, 36.067806]">
+                <l-icon class="flex items-center justify-center">
+                    <button class="w-6 h-6 bg-orange-500/90 rounded-full -translate-x-1/4 -translate-y-1/4"></button>
+                </l-icon>
+            </l-marker>
+            <l-marker :lat-lng="[1.9644, 38.06782]">
+                <l-icon :icon-size="[10, 10]">
+                    <button class="w-6 h-6 bg-green-500/90 rounded-full -translate-x-1/4 -translate-y-1/4"></button>
                 </l-icon>
             </l-marker>
         </l-map>
     </div>
 </template>
+
+s
