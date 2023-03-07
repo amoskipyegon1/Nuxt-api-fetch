@@ -22,8 +22,4 @@ export default defineNuxtConfig({
             // useWebmanifestExtension: false,
         },
     },
-    routeRules: {
-        '/home': { ssr: false },
-        '/plots': { ssr: false },
-    },
 })

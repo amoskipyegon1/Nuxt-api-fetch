@@ -26,6 +26,7 @@
     "prettier": "^2.8.3"
   },
   "dependencies": {
+    "@vue-leaflet/vue-leaflet": "^0.8.4",
     "@vuepic/vue-datepicker": "^3.6.8",
     "leaflet": "^1.9.3",
     "vue-collapsed": "^1.1.1"
