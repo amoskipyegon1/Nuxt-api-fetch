@@ -1,6 +1,8 @@
 export default defineNuxtConfig({
     css: ['~/assets/css/tailwind.css', '~/assets/css/global.css'],
-    modules: ['@nuxtjs/tailwindcss', '@nuxt/image-edge', '@kevinmarrec/nuxt-pwa'],
+    modules: [
+        '@pinia/nuxt', '@nuxtjs/tailwindcss', '@nuxt/image-edge', '@kevinmarrec/nuxt-pwa'
+    ],
     // buildModules: ['@nuxtjs/pwa'],
     app: {
         pageTransition: { name: 'page', mode: 'out-in' },

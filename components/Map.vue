@@ -12,33 +12,37 @@ const zoom = ref<number>(5)
 const iconWidth = ref<number>(25)
 const iconHeight = ref<number>(40)
 const iconUrl = ref<string>(`https://placekitten.com/${iconWidth.value}/${iconHeight.value}`)
+
+const randomData = Array.from({ length: 10 }, () => ({
+    latlng: [
+        Math.random() * (90 - -90) + -90,
+        Math.random() * (180 - -180) + -180,
+    ],
+    value: Math.floor(Math.random() * 100),
+}));
+
+function getIconUrl(value: number) {
+    if (value < 25) {
+        return 'https://placekitten.com/25/25';
+    } else if (value < 50) {
+        return 'https://placekitten.com/30/30';
+    } else if (value < 75) {
+        return 'https://placekitten.com/35/35';
+    } else {
+        return 'https://placekitten.com/40/40';
+    }
+}
+
 </script>
 <template>
     <div class="w-full h-full z-0">
         <l-map ref="map" :zoom="zoom" :center="[-0.289656, 36.067809]" style="z-index: inherit">
-            <l-tile-layer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                layer-type="base"
-                name="OpenStreetMap"
-            ></l-tile-layer>
-            <l-marker :lat-lng="[-0.289656, 36.067806]">
-                <l-icon class="flex items-center justify-center">
-                    <button class="w-6 h-6 bg-orange-500/90 rounded-full -translate-x-1/4 -translate-y-1/4"></button>
-                </l-icon>
-            </l-marker>
-            <l-marker :lat-lng="[-0.489644, 35.06782]">
-                <l-icon :icon-size="[10, 10]">
-                    <button class="w-6 h-6 bg-blue-500/90 rounded-full -translate-x-1/4 -translate-y-1/4"></button>
-                </l-icon>
-            </l-marker>
-            <l-marker :lat-lng="[-0.289656, 36.067806]">
-                <l-icon class="flex items-center justify-center">
-                    <button class="w-6 h-6 bg-orange-500/90 rounded-full -translate-x-1/4 -translate-y-1/4"></button>
-                </l-icon>
-            </l-marker>
-            <l-marker :lat-lng="[1.9644, 38.06782]">
-                <l-icon :icon-size="[10, 10]">
-                    <button class="w-6 h-6 bg-green-500/90 rounded-full -translate-x-1/4 -translate-y-1/4"></button>
+            <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base"
+                name="OpenStreetMap"></l-tile-layer>
+            <l-marker v-for="(data, index) in randomData" :key="index" :lat-lng="data.latlng">
+                <l-icon :icon-size="[30, 30]" :icon-url="getIconUrl(data.value)">
+                    <div class="bg-blue-500 rounded-full w-6 h-6 flex items-center justify-center text-white">
+                    </div>
                 </l-icon>
             </l-marker>
         </l-map>

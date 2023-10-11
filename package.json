@@ -15,7 +15,6 @@
     "@nuxtjs/eslint-module": "^3.1.0",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/tailwindcss": "^6.3.0",
-    "@tailwindcss/line-clamp": "^0.4.2",
     "@types/leaflet": "^1.9.0",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
@@ -26,9 +25,11 @@
     "prettier": "^2.8.3"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
     "@vue-leaflet/vue-leaflet": "^0.8.4",
     "@vuepic/vue-datepicker": "^3.6.8",
     "leaflet": "^1.9.3",
+    "pinia": "^2.1.6",
     "vue-collapsed": "^1.1.1"
   }
 }
